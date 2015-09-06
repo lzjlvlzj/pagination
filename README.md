@@ -7,46 +7,46 @@
 
     2、关于和实际应用集成：
 
-    1）如下例子:
+        1）如下例子:
 
-     var Article = {};
-     Article.page = function(conditions){
-         var url = "/article/list";
-         var data = {};
-         data.conditions = conditions;
-         $.ajax({
-             url:url,
-             type:"post",
-             data:data,
-             dataType:'json',
-             contentType: "application/x-www-form-urlencoded; charset=utf-8",
-             success : function(resObj) {
-                 if( resObj ){
-                     var option = {totalPage:resObj.totalPage, pageNumSize :5, callback : Article.list,conditions : conditions};
-                     $("#page").paginator(option);
-                     Article.show(resObj);
+         var Article = {};
+         Article.page = function(conditions){
+             var url = "/article/list";
+             var data = {};
+             data.conditions = conditions;
+             $.ajax({
+                 url:url,
+                 type:"post",
+                 data:data,
+                 dataType:'json',
+                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                 success : function(resObj) {
+                     if( resObj ){
+                         var option = {totalPage:resObj.totalPage, pageNumSize :5, callback : Article.list,conditions : conditions};
+                         $("#page").paginator(option);
+                         Article.show(resObj);
+                     }
                  }
-             }
-         });
-     };
-     Article.list = function(currentPage,conditions){
-         var url = "/article/list";
-         var data = {};
-         data.conditions = conditions;
-         data.currentPage = currentPage;
-         $.ajax({
-             url:url,
-             type:"post",
-             data:data,
-             dataType:'json',
-             contentType: "application/x-www-form-urlencoded; charset=utf-8",
-             success : function(resObj) {
-                 if( resObj ){
-                     Article.show(resObj);
+             });
+         };
+         Article.list = function(currentPage,conditions){
+             var url = "/article/list";
+             var data = {};
+             data.conditions = conditions;
+             data.currentPage = currentPage;
+             $.ajax({
+                 url:url,
+                 type:"post",
+                 data:data,
+                 dataType:'json',
+                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                 success : function(resObj) {
+                     if( resObj ){
+                         Article.show(resObj);
+                     }
                  }
-             }
-         });
-     };
+             });
+         };
 
 
 3、不足之处：如上面查询，方法是2个(功能一样)，不是一个。暂时还没有想好办法解决。
