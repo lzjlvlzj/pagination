@@ -1,51 +1,46 @@
-ËµÃ÷£º
-±¾²å¼şÊÇÒ»¸ö¼òµ¥µÄ·ÖÒ³²å¼ş(»ùÓÚbootstrap3)
-Ê¹ÓÃ·½·¨¼û page-test.htmlÎÄ¼ş
+è¯´æ˜ï¼š æœ¬æ’ä»¶æ˜¯ä¸€ä¸ªç®€å•çš„åˆ†é¡µæ’ä»¶(åŸºäºbootstrap3) ä½¿ç”¨æ–¹æ³•è§ page-test.htmlæ–‡ä»¶
 
-×¢Òâ£º
-    1¡¢±¾²å¼ş»¹ÓĞ´æÔÚµÄbug£¬µ±pageNumSize²ÎÊıÎªÅ¼ÊıµÄÊ±ºò»áÓĞÎÊÌâ£¬Õâ¸öÎÊÌâÃ»ÓĞ×÷´¦Àí£¬ÒÔºó¸üÕı¡£
-       ÆäËûÎÊÌâÔİÊ±Ã»·¢ÏÖ£¬ÈçÓĞbugÇëÁªÏµÎÒ(mxdyxzy@163.com)
-    2¡¢¹ØÓÚºÍÊµ¼ÊÓ¦ÓÃ¼¯³É£º
-       1£©ÈçÏÂÀı×Ó:
-       var Article = {};
-       Article.page = function(conditions){
-           var url = "/article/list";
-           var data = {};
-           data.conditions = conditions;
-           $.ajax({
-               url:url,
-               type:"post",
-               data:data,
-               dataType:'json',
-               contentType: "application/x-www-form-urlencoded; charset=utf-8",
-               success : function(resObj) {
-                   if( resObj ){
-                       var option = {totalPage:resObj.totalPage, pageNumSize :5, callback : Article.list,conditions : conditions};
-                       $("#page").paginator(option);
-                       Article.show(resObj);
-                   }
-               }
-           });
-       };
-       Article.list = function(currentPage,conditions){
-           var url = "/article/list";
-           var data = {};
-           data.conditions = conditions;
-           data.currentPage = currentPage;
-           $.ajax({
-               url:url,
-               type:"post",
-               data:data,
-               dataType:'json',
-               contentType: "application/x-www-form-urlencoded; charset=utf-8",
-               success : function(resObj) {
-                   if( resObj ){
-                       Article.show(resObj);
-                   }
-               }
-           });
-       };
-       Article.page() ÊÇÒ³ÃæÊ×´Î¼ÓÔØµÄÊ±ºò³õÊ¼»¯·ÖÒ³ÓÃµÄ£¬Article.list()ÊÇµã»÷·ÖÒ³ÉÏ±êÇ©²éÑ¯ÓÃµÄ£¬Ö»ÓĞ²éÑ¯Ìõ¼ş£¬¿ÉÒÔÖ±½Ó
-       ´ÓÒ³ÃæinputµÄÊäÈë¿òÈ¡£¬Ò²¿ÉÒÔÏñ´«µİ(²ÎÊı£ºconditions)
+æ³¨æ„ï¼š 1ã€æœ¬æ’ä»¶è¿˜æœ‰å­˜åœ¨çš„bugï¼Œå½“pageNumSizeå‚æ•°ä¸ºå¶æ•°çš„æ—¶å€™ä¼šæœ‰é—®é¢˜ï¼Œè¿™ä¸ªé—®é¢˜æ²¡æœ‰ä½œå¤„ç†ï¼Œä»¥åæ›´æ­£ã€‚
+å…¶ä»–é—®é¢˜æš‚æ—¶æ²¡å‘ç°ï¼Œå¦‚æœ‰bugè¯·è”ç³»æˆ‘(mxdyxzy@163.com)
+2ã€å…³äºå’Œå®é™…åº”ç”¨é›†æˆï¼š
+1ï¼‰å¦‚ä¸‹ä¾‹å­:
+ var Article = {};
+ Article.page = function(conditions){
+     var url = "/article/list";
+     var data = {};
+     data.conditions = conditions;
+     $.ajax({
+         url:url,
+         type:"post",
+         data:data,
+         dataType:'json',
+         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+         success : function(resObj) {
+             if( resObj ){
+                 var option = {totalPage:resObj.totalPage, pageNumSize :5, callback : Article.list,conditions : conditions};
+                 $("#page").paginator(option);
+                 Article.show(resObj);
+             }
+         }
+     });
+ };
+ Article.list = function(currentPage,conditions){
+     var url = "/article/list";
+     var data = {};
+     data.conditions = conditions;
+     data.currentPage = currentPage;
+     $.ajax({
+         url:url,
+         type:"post",
+         data:data,
+         dataType:'json',
+         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+         success : function(resObj) {
+             if( resObj ){
+                 Article.show(resObj);
+             }
+         }
+     });
+ };
 
-    3¡¢²»×ãÖ®´¦£ºÈçÉÏÃæ²éÑ¯£¬·½·¨ÊÇ2¸ö(¹¦ÄÜÒ»Ñù)£¬²»ÊÇÒ»¸ö¡£ÔİÊ±»¹Ã»ÓĞÏëºÃ°ì·¨½â¾ö¡£
+3ã€ä¸è¶³ä¹‹å¤„ï¼šå¦‚ä¸Šé¢æŸ¥è¯¢ï¼Œæ–¹æ³•æ˜¯2ä¸ª(åŠŸèƒ½ä¸€æ ·)ï¼Œä¸æ˜¯ä¸€ä¸ªã€‚æš‚æ—¶è¿˜æ²¡æœ‰æƒ³å¥½åŠæ³•è§£å†³ã€‚
